@@ -8,7 +8,13 @@ Authors: Chenxu Robin Mao, Abdulrahman Mubarak
 import instaloader
 
 
-def scrap_followers(ins_id: str, pswd: str, other = None):
+def scrap_followers(ins_id: str, pswd: str, other = None) -> List[str]:
+    """ 
+    Returns a list contains the usernames of the <ins_id> followers
+    
+    Precondition: <ins_id> is an instagram account username
+    
+    """
     if not other:
         other = ins_id
     account = instaloader.Instaloader()
@@ -21,7 +27,13 @@ def scrap_followers(ins_id: str, pswd: str, other = None):
     return lst
 
 
-def scrap_followings(ins_id: str, pswd: str, other = None):
+def scrap_followings(ins_id: str, pswd: str, other = None) -> List[str]:
+    """ 
+    Returns a list contains the usernames of the <ins_id> followings
+    
+    Precondition: <ins_id> is an instagram account username
+    
+    """
     if not other:
         other = ins_id
     account = instaloader.Instaloader()
@@ -34,8 +46,12 @@ def scrap_followings(ins_id: str, pswd: str, other = None):
     return lst
 
 
-def find_diff(follows_back: list, follows: list) -> list:
-    """Find follows that are not in follows_back."""
+def find_diff(follows_back: list[str], follows: list[str]) -> list[str]:
+    """
+    Retunrs a sorted list contains the usernames who you are in <follows>
+    but not in <follows_back>
+    
+    """
     res = list(set(follows) - set(follows_back))
     return sorted(res)
 
