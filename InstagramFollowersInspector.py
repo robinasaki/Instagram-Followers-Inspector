@@ -40,38 +40,39 @@ def find_diff(follows_back: list, follows: list) -> list:
     return sorted(res)
 
 if __name__ == '__main__':
-    print('\n')
-    print('===Instagram Followers Inspector===')
-    print('by Robin and Abdul, 2023.04.07.')
-    print('robin.mao@mail.utoronto.ca, Abdulrahman.mubarak@mail.utoronto.ca')
-    print('\n')
-    print('Note that all log info are not recorded.')
-    account_id = input('account_id: ')
-    password = input('password: ')
-    selforother = input(f'Are you retrieving data on yourself, {account_id}? (Y or N): ')
+    while True:
+        print('\n')
+        print('===Instagram Followers Inspector===')
+        print('by Robin and Abdul, 2023.04.07.')
+        print('robin.mao@mail.utoronto.ca, Abdulrahman.mubarak@mail.utoronto.ca')
+        print('\n')
+        print('Note that all log info are not recorded.')
+        account_id = input('account_id: ')
+        password = input('password: ')
+        selforother = input(f'Are you retrieving data on yourself, {account_id}? (Y or N): ')
 
-    if selforother == 'Y':
-        print('\n')
-        print('Retrieving data...Have some patient...This can take up to a minute...')
-        follows = scrap_followers(account_id, password)
-        follows_back = scrap_followings(account_id, password)
-        diff = find_diff(follows, follows_back)
-    elif selforother == 'N':
-        target = input('target instagram id: ')
-        print('\n')
-        print('Retrieving data...Have some patient...')
-        follows = scrap_followers(account_id, password, target)
-        follows_back = scrap_followings(account_id, password, target)
-        diff = find_diff(follows, follows_back)
-    else:
-        diff = None
-        follows = None
-        follows_back = None
-        print('Input invalid.')
-    if diff:
-        print('\n')
-        print('=== data retrieved ===')
-        print(f'Here they are, the usernames of the {len(diff)} people who doesn\'t follow you back, boss:')
-        print(diff)
-    else:
-        print('Data invalid, please check input. (Check account privacy)')
+        if selforother.upper() == 'Y':
+            print('\n')
+            print('Retrieving data...Have some patient...This can take up to a minute...')
+            follows = scrap_followers(account_id, password)
+            follows_back = scrap_followings(account_id, password)
+            diff = find_diff(follows, follows_back)
+        elif selforother.upper() == 'N':
+            target = input('target instagram id: ')
+            print('\n')
+            print('Retrieving data...Have some patient...')
+            follows = scrap_followers(account_id, password, target)
+            follows_back = scrap_followings(account_id, password, target)
+            diff = find_diff(follows, follows_back)
+        else:
+            diff = None
+            follows = None
+            follows_back = None
+            print('Input invalid.')
+        if diff:
+            print('\n')
+            print('=== data retrieved ===')
+            print(f'Here they are, the usernames of the {len(diff)} people who doesn\'t follow you back, boss:')
+            print(diff)
+        else:
+            print('Data invalid, please check input. (Check account privacy)')
