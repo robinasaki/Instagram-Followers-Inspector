@@ -1,5 +1,5 @@
 # Instagram-Followers-Inspector
-### an original project by Robin Chenxu Mao and Abdulrahman Mubarak
+An original project by Robin Chenxu Mao and Abdulrahman Mubarak
 
 > Required Libraries: *instaloader*
 
